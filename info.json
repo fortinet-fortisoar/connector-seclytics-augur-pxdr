@@ -1,0 +1,302 @@
+{
+    "name": "seclytics_fortisoar",
+    "version": "1.0.1",
+    "label": "Seclytics Augur",
+    "description": "",
+    "publisher": "",
+    "icon_small_name": "seclytics_logo_s.png",
+    "icon_large_name": "seclytics_logo.png",
+    "id": 22,
+    "configuration": {
+        "fields": [
+            {
+                "title": "API Hostname",
+                "type": "text",
+                "name": "api_hostname",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": "api.seclytics.com"
+            },
+            {
+                "title": "Verify SSL",
+                "type": "checkbox",
+                "name": "verify_ssl",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": true
+            },
+            {
+                "title": "Access Token",
+                "type": "text",
+                "name": "access_token",
+                "required": false,
+                "visible": true,
+                "editable": true,
+                "value": "Hhhh7UMC4peYFCcGKVqNgsUz",
+                "tooltip": "Please update this value to FortiSoar integration access token provided by Seclytics."
+            }
+        ]
+    },
+    "operations": [
+        {
+            "TEMPLATE_NOTE5": "--ADD OPERATION METADATA--",
+            "operation": "query_ip",
+            "title": "Get IP Reputation",
+            "description": "Retrieves a report for the IP addresses submitted, to determine if it is predicted by Seclytics or reported malicious.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "ip_reputation",
+            "TEMPLATE_NOTE6": "--OUTPUT SCHEMA IS A SAMPLE RESPONSE FROM THIS CONNECTOR ACTION--",
+            "output_schema": {
+                "asn": {
+                    "description": "IPROYAL",
+                    "number": "212669"
+                },
+                "cidr": {
+                    "block": "91.227.137.0/24",
+                    "size": 256,
+                    "status": "announced"
+                },
+                "context": {
+                    "categories": {
+                        "hybrid_analysis": [
+                            "malicious"
+                        ],
+                        "uceprotect_level3": [
+                            "spam"
+                        ]
+                    },
+                    "identifiers": {
+                        "hybrid_analysis": [
+                            "kryptik"
+                        ]
+                    },
+                    "reasons": {
+                        "hybrid_analysis": [
+                            "Kryptik.ACAN",
+                            "Predicted IP seen in malware traffic"
+                        ]
+                    },
+                    "source_urls": {
+                        "hybrid_analysis": [
+                            "https://www.hybrid-analysis.com/sample/cb8f5442f14a863b07396882d324759dd7addea4cf5142e9dd296a47b3fc2df5/60f84783770d9774691c7beb"
+                        ]
+                    }
+                },
+                "country": {
+                    "code": "LT",
+                    "name": "Lithuania"
+                },
+                "id": "91.227.137.207",
+                "ip": {
+                    "address": "91.227.137.207",
+                    "number": 1541638607,
+                    "type": "global"
+                },
+                "predicted": {
+                    "category": "malware",
+                    "cidr": "91.227.137.0/24",
+                    "cluster": "8887166838884c3000dd354304a7938c2426b81c",
+                    "importance": 50,
+                    "predicted_at": "2019-11-13T02:43:18",
+                    "profile": "profile-112866",
+                    "valid_from": "2019-11-11T10:51:43",
+                    "valid_until": null
+                },
+                "prediction": {
+                    "category": "malware",
+                    "cidr": "91.227.137.0/24",
+                    "cluster": "8887166838884c3000dd354304a7938c2426b81c",
+                    "importance": 50,
+                    "predicted_at": "2019-11-13T02:43:18",
+                    "profile": "profile-112866",
+                    "valid_from": "2019-11-11T10:51:43",
+                    "valid_until": null
+                },
+                "rir": {
+                    "code": "RI",
+                    "name": "RIPE"
+                },
+                "type": "ip"
+            },
+            "TEMPLATE_NOTE7": "--PARAMETERS FOR THIS OPERATION--",
+            "parameters": [
+                {
+                    "title": "IP",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "ip",
+                    "value": "",
+                    "description": "IP address for which you want to retrieve a report."
+                }
+            ]
+        },
+        {
+            "operation": "query_domain",
+            "title": "Get Domain Reputation",
+            "description": "Retrieves a report for the domains submitted, to determine if they are suspicious.",
+            "category": "investigation",
+            "annotation": "domain_reputation",
+            "output_schema": {
+                "score": "",
+                "categories": "",
+                "domain_siblings": [],
+                "aggregate": "",
+                "detected_downloaded_samples": "",
+                "undetected_downloaded_samples": "",
+                "detected_urls": "",
+                "subdomains": "",
+                "whois": "",
+                "whois_timestamp": "",
+                "msg": ""
+            },
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Domain",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "domain",
+                    "value": "",
+                    "description": "Domain name for which you want to retrieve a report."
+                }
+            ]
+        },
+        {
+            "operation": "query_host",
+            "title": "Get Host Reputation",
+            "description": "Retrieves a report for the host submitted, to determine if they are suspicious.",
+            "category": "investigation",
+            "annotation": "host_reputation",
+            "output_schema": {
+                "score": "",
+                "permalink": "",
+                "aggregate": "",
+                "positives": "",
+                "total": "",
+                "resource": "",
+                "scan_date": "",
+                "scan_id": "",
+                "url": "",
+                "msg": "",
+                "scans": {}
+            },
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Host",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "host",
+                    "value": "",
+                    "description": "Host for which you want to retrieve a report."
+                }
+            ]
+        },
+        {
+            "operation": "query_file",
+            "title": "Get File Reputation",
+            "description": "Retrieves a report for the file that you have submitted using file hash.",
+            "category": "investigation",
+            "annotation": "query_file",
+            "output_schema": {
+                "score": "",
+                "permalink": "",
+                "aggregate": "",
+                "positives": "",
+                "resource": "",
+                "scan_date": "",
+                "scan_id": "",
+                "msg": "",
+                "scans": {}
+            },
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "File Hash",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "file_hash",
+                    "value": "",
+                    "description": "File Hash of the file for which you want to retrieve a report."
+                }
+            ]
+        },
+        {
+            "operation": "download_predictions",
+            "title": "Download Predictions",
+            "description": "Download Seclytics Predicted threat intel data.",
+            "category": "miscellaneous",
+            "annotation": "download_predictions",
+            "output_schema": {
+                "predicted_netblock": "",
+                "cluster": "",
+                "predicted_category": "",
+                "predicted_at": "",
+                "prediction_profile": "",
+                "severity": ""
+            },
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "File Name (optional)",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "file_name",
+                    "value": "",
+                    "description": "File name of the Seclytics prediction data."
+                }
+            ]
+        }
+    ],
+    "category": "",
+    "active": true,
+    "cs_compatible": true,
+    "system": false,
+    "playbook_collections": [
+        {
+            "@id": "/api/3/workflow_collections/d2162198-cc58-4c35-9761-5f5366696bd2",
+            "name": "Sample - Seclytics Augur - 1.0.1",
+            "image": "/api/3/images/b4147436-912c-4356-803b-84b4f686b5d2",
+            "description": "Sample playbooks for \"Seclytics Augur\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete."
+        }
+    ],
+    "icon_small": "data:image/jpeg;base64,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",
+    "icon_large": "data:image/jpeg;base64,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",
+    "help_online": null,
+    "help_file": null,
+    "vendor_version": null,
+    "status": "Completed",
+    "install_result": {
+        "output": "",
+        "message": "Success"
+    },
+    "config_count": 0,
+    "ingestion_supported": false,
+    "cs_approved": false,
+    "tags": [],
+    "remote_status": {
+        "output": "",
+        "status": "finished",
+        "message": "Success"
+    },
+    "rpm_full_name": null,
+    "installed": true,
+    "created": "2021-09-23T19:11:08.112025Z",
+    "modified": "2021-09-23T19:11:08.112240Z",
+    "agent": "1763d743e4ff16d95303339553c6c7ee",
+    "forked_from": false,
+    "rpm_installed": null
+}

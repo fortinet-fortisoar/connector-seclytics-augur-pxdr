@@ -1,0 +1,3 @@
+# Add Python Dependencies
+# DO NOT HARDCODE library versions unless there are specific issues with using the latest version
+validators
