@@ -1,9 +1,9 @@
 {
-    "name": "seclytics_fortisoar",
+    "name": "connector-seclytics-augur-pxdr",
     "version": "1.0.1",
-    "label": "Seclytics Augur",
-    "description": "",
-    "publisher": "",
+    "label": "Connector for Seclytics Augur pXDR",
+    "description": "FortiSOAR connector for Seclytics Augur pXDR platform & Services.",
+    "publisher": "Seclytics",
     "icon_small_name": "seclytics_logo_s.png",
     "icon_large_name": "seclytics_logo.png",
     "id": 22,
@@ -268,7 +268,7 @@
     "playbook_collections": [
         {
             "@id": "/api/3/workflow_collections/d2162198-cc58-4c35-9761-5f5366696bd2",
-            "name": "Sample - Seclytics Augur - 1.0.1",
+            "name": "Sample - Connector for Seclytics Augur - 1.0.1",
             "image": "/api/3/images/b4147436-912c-4356-803b-84b4f686b5d2",
             "description": "Sample playbooks for \"Seclytics Augur\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete."
         }
