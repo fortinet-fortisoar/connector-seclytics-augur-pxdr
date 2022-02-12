@@ -1,0 +1,283 @@
+{
+    "name": "seclytics-augur-pxdr",
+    "version": "1.0.1",
+    "label": "Connector for Seclytics Augur pXDR",
+    "description": "Seclytics Augur pXDR: This FortiSOAR connector interacts with Seclytics Augur pXDR API. It can perform IOC lookup for threat context enrichment for threat investigation. It can also download SecLytics' unique predictive threat intel for automated network security response.",
+    "publisher": "Fortinet",
+    "icon_small_name": "seclytics_logo_s.png",
+    "icon_large_name": "seclytics_logo.png",
+    "id": 22,
+    "configuration": {
+        "fields": [
+            {
+                "title": "API Hostname",
+                "type": "text",
+                "name": "api_hostname",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": "api.seclytics.com"
+            },
+            {
+                "title": "Access Token",
+                "type": "password",
+                "name": "access_token",
+                "required": false,
+                "visible": true,
+                "editable": true,
+                "value": "",
+                "tooltip": "Please update this value to FortiSoar integration access token provided by Seclytics."
+            },
+            {
+                "title": "Verify SSL",
+                "type": "checkbox",
+                "name": "verify_ssl",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": true
+            },
+        ]
+    },
+    "operations": [
+        {
+            "TEMPLATE_NOTE5": "--ADD OPERATION METADATA--",
+            "operation": "query_ip",
+            "title": "Get IP Reputation",
+            "description": "Retrieves a report for the IP addresses submitted, to determine if it is predicted by Seclytics or reported malicious.",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "ip_reputation",
+            "TEMPLATE_NOTE6": "--OUTPUT SCHEMA IS A SAMPLE RESPONSE FROM THIS CONNECTOR ACTION--",
+            "output_schema": {
+                "asn": {
+                    "description": "",
+                    "number": ""
+                },
+                "cidr": {
+                    "block": "",
+                    "size": "",
+                    "status": ""
+                },
+                "context": {
+                    "categories": {
+                        "hybrid_analysis": [],
+                        "uceprotect_level3": []
+                    },
+                    "identifiers": {
+                        "hybrid_analysis": []
+                    },
+                    "reasons": {
+                        "hybrid_analysis": []
+                    },
+                    "source_urls": {
+                        "hybrid_analysis": []
+                    }
+                },
+                "country": {
+                    "code": "",
+                    "name": ""
+                },
+                "id": "",
+                "ip": {
+                    "address": "",
+                    "number": "",
+                    "type": ""
+                },
+                "predicted": {
+                    "category": "",
+                    "cidr": "",
+                    "cluster": "",
+                    "importance": null,
+                    "predicted_at": "",
+                    "profile": "",
+                    "valid_from": "",
+                    "valid_until": null
+                },
+                "prediction": {
+                    "category": "",
+                    "cidr": "",
+                    "cluster": "",
+                    "importance": null,
+                    "predicted_at": "",
+                    "profile": "",
+                    "valid_from": "",
+                    "valid_until": null
+                },
+                "rir": {
+                    "code": "",
+                    "name": ""
+                },
+                "type": ""
+            },
+            "TEMPLATE_NOTE7": "--PARAMETERS FOR THIS OPERATION--",
+            "parameters": [
+                {
+                    "title": "IP",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "ip",
+                    "value": "",
+                    "description": "IP address for which you want to retrieve a report."
+                }
+            ]
+        },
+        {
+            "operation": "query_domain",
+            "title": "Get Domain Reputation",
+            "description": "Retrieves a report for the domains submitted, to determine if they are suspicious.",
+            "category": "investigation",
+            "annotation": "domain_reputation",
+            "output_schema": {
+                "score": "",
+                "categories": "",
+                "domain_siblings": [],
+                "aggregate": "",
+                "detected_downloaded_samples": "",
+                "undetected_downloaded_samples": "",
+                "detected_urls": "",
+                "subdomains": "",
+                "whois": "",
+                "whois_timestamp": "",
+                "msg": ""
+            },
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Domain",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "domain",
+                    "value": "",
+                    "description": "Domain name for which you want to retrieve a report."
+                }
+            ]
+        },
+        {
+            "operation": "query_host",
+            "title": "Get Host Reputation",
+            "description": "Retrieves a report for the host submitted, to determine if they are suspicious.",
+            "category": "investigation",
+            "annotation": "host_reputation",
+            "output_schema": {
+                "score": "",
+                "permalink": "",
+                "aggregate": "",
+                "positives": "",
+                "total": "",
+                "resource": "",
+                "scan_date": "",
+                "scan_id": "",
+                "url": "",
+                "msg": "",
+                "scans": {}
+            },
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Host",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "host",
+                    "value": "",
+                    "description": "Host for which you want to retrieve a report."
+                }
+            ]
+        },
+        {
+            "operation": "query_file",
+            "title": "Get File Reputation",
+            "description": "Retrieves a report for the file that you have submitted using file hash.",
+            "category": "investigation",
+            "annotation": "query_file",
+            "output_schema": {
+                "score": "",
+                "permalink": "",
+                "aggregate": "",
+                "positives": "",
+                "resource": "",
+                "scan_date": "",
+                "scan_id": "",
+                "msg": "",
+                "scans": {}
+            },
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "File Hash",
+                    "required": true,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "file_hash",
+                    "value": "",
+                    "description": "File Hash of the file for which you want to retrieve a report."
+                }
+            ]
+        },
+        {
+            "operation": "download_predictions",
+            "title": "Download Predictions",
+            "description": "Download Seclytics Predicted threat intel data.",
+            "category": "miscellaneous",
+            "annotation": "download_predictions",
+            "output_schema": {
+                "predicted_netblock": "",
+                "cluster": "",
+                "predicted_category": "",
+                "predicted_at": "",
+                "prediction_profile": "",
+                "severity": ""
+            },
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "File Name",
+                    "required": false,
+                    "editable": true,
+                    "visible": true,
+                    "type": "text",
+                    "name": "file_name",
+                    "value": "",
+                    "description": "File name of the Seclytics prediction data."
+                }
+            ]
+        }
+    ],
+    "category": "Network Protection",
+    "active": true,
+    "cs_compatible": true,
+    "system": false,
+    "icon_small": "connector_logo_small.png",
+    "icon_large": "connector_logo_large.png",
+    "help_online": null,
+    "help_file": null,
+    "vendor_version": null,
+    "status": "Completed",
+    "install_result": {
+        "output": "",
+        "message": "Success"
+    },
+    "config_count": 0,
+    "ingestion_supported": false,
+    "cs_approved": false,
+    "tags": [],
+    "remote_status": {
+        "output": "",
+        "status": "finished",
+        "message": "Success"
+    },
+    "rpm_full_name": null,
+    "installed": true,
+    "created": "2021-09-23T19:11:08.112025Z",
+    "modified": "2021-09-23T19:11:08.112240Z",
+    "agent": "1763d743e4ff16d95303339553c6c7ee",
+    "forked_from": false,
+    "rpm_installed": null
+}

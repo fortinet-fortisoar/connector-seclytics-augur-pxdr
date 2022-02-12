@@ -77,4 +77,4 @@ def check_api_health(config):
     Seclytics(config).api_get(auth_endpoint)
 
     # No exceptions, we're good!
-    return 'Augur API is Available'
+    return True
