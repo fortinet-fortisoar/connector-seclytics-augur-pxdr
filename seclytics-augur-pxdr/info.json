@@ -1,22 +1,31 @@
 {
     "name": "seclytics-augur-pxdr",
-    "version": "1.0.1",
-    "label": "Connector for Seclytics Augur pXDR",
+    "version": "1.0.0",
+    "label": "Seclytics Augur pXDR",
     "description": "Seclytics Augur pXDR: This FortiSOAR connector interacts with Seclytics Augur pXDR API. It can perform IOC lookup for threat context enrichment for threat investigation. It can also download SecLytics' unique predictive threat intel for automated network security response.",
-    "publisher": "Fortinet",
+    "publisher": "Seclytics",
     "icon_small_name": "seclytics_logo_s.png",
     "icon_large_name": "seclytics_logo.png",
-    "id": 22,
+    "category": "Network Protection",
+    "cs_compatible": true,
+    "icon_small": "connector_logo_small.png",
+    "icon_large": "connector_logo_large.png",
+    "help_online": "",
+    "vendor_version": "",
+    "ingestion_supported": false,
+    "cs_approved": false,
     "configuration": {
         "fields": [
             {
-                "title": "API Hostname",
+                "title": "Server URL",
                 "type": "text",
                 "name": "api_hostname",
                 "required": true,
                 "visible": true,
                 "editable": true,
-                "value": "api.seclytics.com"
+                "value": "api.seclytics.com",
+                "placeholder": "e.g. api.seclytics.com",
+                "description": "URL of the Seclytics server to which you will connect and perform the automated operations."
             },
             {
                 "title": "Access Token",
@@ -26,7 +35,8 @@
                 "visible": true,
                 "editable": true,
                 "value": "",
-                "tooltip": "Please update this value to FortiSoar integration access token provided by Seclytics."
+                "tooltip": "Please update this value to FortiSoar integration access token provided by Seclytics.",
+                "description": "Provide the access token provided by Seclytics to access the APIs."
             },
             {
                 "title": "Verify SSL",
@@ -35,95 +45,12 @@
                 "required": true,
                 "visible": true,
                 "editable": true,
-                "value": true
-            },
+                "value": true,
+                "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True. "
+            }
         ]
     },
     "operations": [
-        {
-            "TEMPLATE_NOTE5": "--ADD OPERATION METADATA--",
-            "operation": "query_ip",
-            "title": "Get IP Reputation",
-            "description": "Retrieves a report for the IP addresses submitted, to determine if it is predicted by Seclytics or reported malicious.",
-            "enabled": true,
-            "category": "investigation",
-            "annotation": "ip_reputation",
-            "TEMPLATE_NOTE6": "--OUTPUT SCHEMA IS A SAMPLE RESPONSE FROM THIS CONNECTOR ACTION--",
-            "output_schema": {
-                "asn": {
-                    "description": "",
-                    "number": ""
-                },
-                "cidr": {
-                    "block": "",
-                    "size": "",
-                    "status": ""
-                },
-                "context": {
-                    "categories": {
-                        "hybrid_analysis": [],
-                        "uceprotect_level3": []
-                    },
-                    "identifiers": {
-                        "hybrid_analysis": []
-                    },
-                    "reasons": {
-                        "hybrid_analysis": []
-                    },
-                    "source_urls": {
-                        "hybrid_analysis": []
-                    }
-                },
-                "country": {
-                    "code": "",
-                    "name": ""
-                },
-                "id": "",
-                "ip": {
-                    "address": "",
-                    "number": "",
-                    "type": ""
-                },
-                "predicted": {
-                    "category": "",
-                    "cidr": "",
-                    "cluster": "",
-                    "importance": null,
-                    "predicted_at": "",
-                    "profile": "",
-                    "valid_from": "",
-                    "valid_until": null
-                },
-                "prediction": {
-                    "category": "",
-                    "cidr": "",
-                    "cluster": "",
-                    "importance": null,
-                    "predicted_at": "",
-                    "profile": "",
-                    "valid_from": "",
-                    "valid_until": null
-                },
-                "rir": {
-                    "code": "",
-                    "name": ""
-                },
-                "type": ""
-            },
-            "TEMPLATE_NOTE7": "--PARAMETERS FOR THIS OPERATION--",
-            "parameters": [
-                {
-                    "title": "IP",
-                    "required": true,
-                    "editable": true,
-                    "visible": true,
-                    "type": "text",
-                    "name": "ip",
-                    "value": "",
-                    "description": "IP address for which you want to retrieve a report."
-                }
-            ]
-        },
         {
             "operation": "query_domain",
             "title": "Get Domain Reputation",
@@ -249,35 +176,5 @@
                 }
             ]
         }
-    ],
-    "category": "Network Protection",
-    "active": true,
-    "cs_compatible": true,
-    "system": false,
-    "icon_small": "connector_logo_small.png",
-    "icon_large": "connector_logo_large.png",
-    "help_online": null,
-    "help_file": null,
-    "vendor_version": null,
-    "status": "Completed",
-    "install_result": {
-        "output": "",
-        "message": "Success"
-    },
-    "config_count": 0,
-    "ingestion_supported": false,
-    "cs_approved": false,
-    "tags": [],
-    "remote_status": {
-        "output": "",
-        "status": "finished",
-        "message": "Success"
-    },
-    "rpm_full_name": null,
-    "installed": true,
-    "created": "2021-09-23T19:11:08.112025Z",
-    "modified": "2021-09-23T19:11:08.112240Z",
-    "agent": "1763d743e4ff16d95303339553c6c7ee",
-    "forked_from": false,
-    "rpm_installed": null
+    ]
 }
