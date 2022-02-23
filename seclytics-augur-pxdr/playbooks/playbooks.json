@@ -32,7 +32,7 @@
           "steps": [
             {
               "@type": "WorkflowStep",
-              "name": "Alerts",
+              "name": "Start",
               "description": null,
               "arguments": {
                 "route": "7cd30497-3bee-4f4f-9c23-d95d54c6dafc",
@@ -126,7 +126,7 @@
           "steps": [
             {
               "@type": "WorkflowStep",
-              "name": "Alerts",
+              "name": "Start",
               "description": null,
               "arguments": {
                 "route": "43fd6358-a57a-4163-92da-96bbc99fc1fd",
@@ -220,7 +220,7 @@
           "steps": [
             {
               "@type": "WorkflowStep",
-              "name": "Alerts",
+              "name": "Start",
               "description": null,
               "arguments": {
                 "route": "4258ca5f-e68c-47aa-96b1-25b6b01318af",
@@ -314,7 +314,7 @@
           "steps": [
             {
               "@type": "WorkflowStep",
-              "name": "Alerts",
+              "name": "Start",
               "description": null,
               "arguments": {
                 "route": "3fd6371c-6430-4b15-ba64-e6bf344ca334",
