@@ -4,245 +4,200 @@
     {
       "@context": "/api/3/contexts/WorkflowCollection",
       "@type": "WorkflowCollection",
-      "name": "Sample - Seclytics Augur - 1.0.1",
-      "description": "Sample playbooks for \"Seclytics Augur\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "name": "Sample - Seclytics Augur pXDR - 1.0.0",
+      "description": "Sample playbooks for \"Seclytics Augur pXDR\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
       "visible": true,
-      "image": "/api/3/images/e042ab97-758e-4901-8b18-6c9a0a068cc7",
-      "id": 22,
-      "createDate": 1632447929,
-      "modifyDate": 1632460063,
-      "recordTags": [
-        "SeclyticsAugur"
-      ],
+      "image": "/api/3/images/1f492f37-1e69-461d-add4-1e6c1667eea7",
+      "id": 1150,
+      "createDate": 1645616293,
+      "modifyDate": 1645616293,
+      "recordTags": [],
       "workflows": [
         {
           "@type": "Workflow",
           "triggerLimit": null,
-          "name": "Get Domain Reputation",
+          "name": "Get File Reputation",
           "aliasName": null,
-          "tag": null,
-          "description": "Get reputation of a domain from Seclytics.",
+          "tag": "#Seclytics Augur pXDR",
+          "description": "Retrieves a report for the file that you have submitted using file hash.",
           "isActive": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1632459866,
-          "collection": "/api/3/workflow_collections/d2162198-cc58-4c35-9761-5f5366696bd2",
+          "lastModifyDate": 1645616586,
+          "collection": "/api/3/workflow_collections/cbb6c538-09a2-4cc7-abc0-e0f717b7cf50",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/12ec6a77-6f37-4822-9c8f-0cb043380de6",
+          "triggerStep": "/api/3/workflow_steps/4c19514b-6435-4efb-ba2d-ccfd9f21753c",
           "steps": [
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "584f8733-62a6-4cec-b767-570c62dbceba",
+                "route": "7cd30497-3bee-4f4f-9c23-d95d54c6dafc",
+                "title": "Seclytics Augur pXDR: Get File Reputation",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "executeButtonText": "Execute",
                 "noRecordExecution": true,
                 "singleRecordExecution": false
               },
               "status": null,
-              "top": "40",
-              "left": "40",
+              "top": "20",
+              "left": "20",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "12ec6a77-6f37-4822-9c8f-0cb043380de6",
-              "id": 447
+              "uuid": "4c19514b-6435-4efb-ba2d-ccfd9f21753c",
+              "id": 31387
             },
             {
               "@type": "WorkflowStep",
-              "name": "Get Domain Reputation",
+              "name": "Get File Reputation",
               "description": null,
               "arguments": {
-                "name": "Seclytics Augur",
-                "config": "",
+                "name": "Seclytics Augur pXDR",
+                "config": "''",
                 "params": {
-                  "domain": "vtqt.xyz"
+                  "file_hash": ""
                 },
-                "version": "1.0.1",
-                "connector": "seclytics_fortisoar",
-                "operation": "query_domain",
-                "operationTitle": "Get Domain Reputation",
-                "pickFromTenant": false,
-                "step_variables": []
+                "version": "1.0.0",
+                "connector": "seclytics-augur-pxdr",
+                "operation": "query_file",
+                "operationTitle": "Get File Reputation",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
               },
               "status": null,
-              "top": "160",
-              "left": "40",
+              "top": "120",
+              "left": "188",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "c4c9375a-e23d-4089-946a-075a8d794a56",
-              "id": 448
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Save Response",
-              "description": null,
-              "arguments": {
-                "seclytics_domain_response": "{{vars.result}}"
-              },
-              "status": null,
-              "top": "320",
-              "left": "40",
-              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-              "uuid": "9dcd333a-15ad-42f1-a589-71eb0fa665f5",
-              "id": 449
+              "uuid": "d7b892e3-7747-46a8-afa9-4884182cb921",
+              "id": 31388
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start -> Get Domain Context",
-              "targetStep": "/api/3/workflow_steps/c4c9375a-e23d-4089-946a-075a8d794a56",
-              "sourceStep": "/api/3/workflow_steps/12ec6a77-6f37-4822-9c8f-0cb043380de6",
+              "name": "Alerts -> Get File Reputation",
+              "targetStep": "/api/3/workflow_steps/d7b892e3-7747-46a8-afa9-4884182cb921",
+              "sourceStep": "/api/3/workflow_steps/4c19514b-6435-4efb-ba2d-ccfd9f21753c",
               "label": null,
               "isExecuted": false,
-              "uuid": "94b67aad-3590-4fa5-93da-d169f398afdc"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Get Domain Context -> Save Response",
-              "targetStep": "/api/3/workflow_steps/9dcd333a-15ad-42f1-a589-71eb0fa665f5",
-              "sourceStep": "/api/3/workflow_steps/c4c9375a-e23d-4089-946a-075a8d794a56",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "cefda561-4b54-42a3-b7aa-d179d26c3d96"
+              "uuid": "143c11e2-2b3b-40d6-ae32-5c74cbdb57d0"
             }
           ],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "6e1909e2-bde8-4036-8598-caa62216de57",
+          "priority": null,
+          "uuid": "79071468-aea8-49d8-b3ad-d2a2eed481d5",
           "recordTags": [
-            "SeclyticsAugur"
+            "Seclytics",
+            "seclytics-augur-pxdr"
           ],
-          "id": 138,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1632458816,
+          "id": 11341,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1645616293,
           "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1632459866,
+          "modifyDate": 1645616585,
           "owners": [],
           "isPrivate": false
         },
         {
           "@type": "Workflow",
           "triggerLimit": null,
-          "name": "Download Predictions",
+          "name": "Get Domain Reputation",
           "aliasName": null,
-          "tag": null,
-          "description": "Download Predictions data from Seclytics.",
+          "tag": "#Seclytics Augur pXDR",
+          "description": "Retrieves a report for the domains submitted, to determine if they are suspicious.",
           "isActive": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1632462542,
-          "collection": "/api/3/workflow_collections/d2162198-cc58-4c35-9761-5f5366696bd2",
+          "lastModifyDate": 1645616570,
+          "collection": "/api/3/workflow_collections/cbb6c538-09a2-4cc7-abc0-e0f717b7cf50",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/55f8f8c1-ce8e-4d56-b25f-d718ab977908",
+          "triggerStep": "/api/3/workflow_steps/e63a573f-393d-43ff-9831-1ac317a5c534",
           "steps": [
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "210b2295-2877-4f53-b11f-4735b9984a55",
-                "title": "Start",
+                "route": "43fd6358-a57a-4163-92da-96bbc99fc1fd",
+                "title": "Seclytics Augur pXDR: Get Domain Reputation",
                 "resources": [
-                  "tasks"
+                  "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "executeButtonText": "Execute",
                 "noRecordExecution": true,
                 "singleRecordExecution": false
               },
               "status": null,
-              "top": "40",
-              "left": "40",
+              "top": "20",
+              "left": "20",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "55f8f8c1-ce8e-4d56-b25f-d718ab977908",
-              "id": 453
+              "uuid": "e63a573f-393d-43ff-9831-1ac317a5c534",
+              "id": 31383
             },
             {
               "@type": "WorkflowStep",
-              "name": "Download Predictions",
+              "name": "Get Domain Reputation",
               "description": null,
               "arguments": {
-                "name": "Seclytics Augur",
-                "config": "",
-                "params": [],
-                "version": "1.0.1",
-                "connector": "seclytics_fortisoar",
-                "operation": "download_predictions",
-                "operationTitle": "Download Predictions",
-                "pickFromTenant": false,
-                "step_variables": []
+                "name": "Seclytics Augur pXDR",
+                "config": "12161385-3737-4f74-9137-fc59e2d377dc",
+                "params": {
+                  "domain": "kubeitalia.it"
+                },
+                "version": "1.0.0",
+                "connector": "seclytics-augur-pxdr",
+                "operation": "query_domain",
+                "operationTitle": "Get Domain Reputation",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
               },
               "status": null,
-              "top": "240",
-              "left": "40",
+              "top": "120",
+              "left": "180",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "40b4dc0c-fee3-439a-8a49-43ee0fb01353",
-              "id": 454
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Save Response",
-              "description": null,
-              "arguments": {
-                "seclytics_predictions_response": "{{vars.result}}"
-              },
-              "status": null,
-              "top": "440",
-              "left": "40",
-              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-              "uuid": "fb680a09-af9d-4595-8bad-e353ae7b0da7",
-              "id": 455
+              "uuid": "fb5befd2-70ef-4ad8-9bf5-d1a0cbe042a9",
+              "id": 31384
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start -> Download Predictions",
-              "targetStep": "/api/3/workflow_steps/40b4dc0c-fee3-439a-8a49-43ee0fb01353",
-              "sourceStep": "/api/3/workflow_steps/55f8f8c1-ce8e-4d56-b25f-d718ab977908",
+              "name": "Alerts -> Get Domain Reputation",
+              "targetStep": "/api/3/workflow_steps/fb5befd2-70ef-4ad8-9bf5-d1a0cbe042a9",
+              "sourceStep": "/api/3/workflow_steps/e63a573f-393d-43ff-9831-1ac317a5c534",
               "label": null,
               "isExecuted": false,
-              "uuid": "06a9abee-3e0d-4b49-96dc-eadf84fcd236"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Download Predictions -> Save Response",
-              "targetStep": "/api/3/workflow_steps/fb680a09-af9d-4595-8bad-e353ae7b0da7",
-              "sourceStep": "/api/3/workflow_steps/40b4dc0c-fee3-439a-8a49-43ee0fb01353",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "21d766b3-1a7a-4a61-b174-e17cb5df4e10"
+              "uuid": "56619696-cb30-4530-8ea0-80af9ff26f16"
             }
           ],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "9356ed69-ffdd-4168-b321-8397a494c913",
+          "priority": null,
+          "uuid": "7ad4251b-4775-4302-a433-2b771064e2e8",
           "recordTags": [
-            "SeclyticsAugur"
+            "Seclytics",
+            "seclytics-augur-pxdr"
           ],
-          "id": 140,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1632462309,
+          "id": 11339,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1645616293,
           "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1632462541,
+          "modifyDate": 1645616570,
           "owners": [],
           "isPrivate": false
         },
@@ -251,347 +206,186 @@
           "triggerLimit": null,
           "name": "Get Host Reputation",
           "aliasName": null,
-          "tag": null,
-          "description": "Get reputation of a host from Seclytics.",
+          "tag": "#Seclytics Augur pXDR",
+          "description": "Retrieves a report for the host submitted, to determine if they are suspicious.",
           "isActive": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1632459939,
-          "collection": "/api/3/workflow_collections/d2162198-cc58-4c35-9761-5f5366696bd2",
+          "lastModifyDate": 1645616602,
+          "collection": "/api/3/workflow_collections/cbb6c538-09a2-4cc7-abc0-e0f717b7cf50",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/53f3cba1-ad0e-4ece-a569-98df167a5d7b",
+          "triggerStep": "/api/3/workflow_steps/627c911e-6f5a-4453-8734-a51763f47e54",
           "steps": [
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "41013939-392f-43ca-855d-bdb0d41a2644",
+                "route": "4258ca5f-e68c-47aa-96b1-25b6b01318af",
+                "title": "Seclytics Augur pXDR: Get Host Reputation",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "executeButtonText": "Execute",
                 "noRecordExecution": true,
                 "singleRecordExecution": false
               },
               "status": null,
-              "top": "40",
-              "left": "40",
+              "top": "20",
+              "left": "20",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "53f3cba1-ad0e-4ece-a569-98df167a5d7b",
-              "id": 450
+              "uuid": "627c911e-6f5a-4453-8734-a51763f47e54",
+              "id": 31385
             },
             {
               "@type": "WorkflowStep",
               "name": "Get Host Reputation",
               "description": null,
               "arguments": {
-                "name": "Seclytics Augur",
-                "config": "",
+                "name": "Seclytics Augur pXDR",
+                "config": "''",
                 "params": {
-                  "host": "gavorchid.com"
+                  "host": ""
                 },
-                "version": "1.0.1",
-                "connector": "seclytics_fortisoar",
+                "version": "1.0.0",
+                "connector": "seclytics-augur-pxdr",
                 "operation": "query_host",
                 "operationTitle": "Get Host Reputation",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "200",
-              "left": "40",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "6a117359-5aca-46e8-8c19-f6d3d5abc401",
-              "id": 451
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Save Response",
-              "description": null,
-              "arguments": {
-                "seclytics_host_response": "{{vars.result}}"
-              },
-              "status": null,
-              "top": "380",
-              "left": "40",
-              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-              "uuid": "175def6b-90ee-43a7-a390-b9a11bb99d51",
-              "id": 452
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get Host Reputation",
-              "targetStep": "/api/3/workflow_steps/6a117359-5aca-46e8-8c19-f6d3d5abc401",
-              "sourceStep": "/api/3/workflow_steps/53f3cba1-ad0e-4ece-a569-98df167a5d7b",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "2bbf3ceb-f988-4561-9298-0e1e9d671049"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Get Host Reputation -> Save Response",
-              "targetStep": "/api/3/workflow_steps/175def6b-90ee-43a7-a390-b9a11bb99d51",
-              "sourceStep": "/api/3/workflow_steps/6a117359-5aca-46e8-8c19-f6d3d5abc401",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "9efe5767-c779-42d5-95e1-38bec55a4f2c"
-            }
-          ],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "9ff1a024-0167-49d2-bd73-03efbdeaeb8d",
-          "recordTags": [
-            "SeclyticsAugur"
-          ],
-          "id": 139,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1632459666,
-          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1632459938,
-          "owners": [],
-          "isPrivate": false
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get IP Reputation",
-          "aliasName": null,
-          "tag": null,
-          "description": "Get reputation of an IP address from Seclytics.",
-          "isActive": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1632459924,
-          "collection": "/api/3/workflow_collections/d2162198-cc58-4c35-9761-5f5366696bd2",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/7031a1f1-33f4-4294-adf3-3db43fbcb20d",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Alerts",
-              "description": null,
-              "arguments": {
-                "route": "939909ee-fdba-485b-8ab8-fcbb215ccee1",
-                "title": "SeclyticsAugur: Get IP Context",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
                 "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
+                  "output_data": "{{vars.result}}"
+                }
               },
               "status": null,
-              "top": "40",
-              "left": "40",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "7031a1f1-33f4-4294-adf3-3db43fbcb20d",
-              "id": 441
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get IP Reputation",
-              "description": null,
-              "arguments": {
-                "name": "Seclytics Augur",
-                "config": "",
-                "params": {
-                  "ip": "65.108.20.39"
-                },
-                "version": "1.0.1",
-                "connector": "seclytics_fortisoar",
-                "operation": "query_ip",
-                "operationTitle": "Get IP Reputation",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "220",
-              "left": "40",
+              "top": "120",
+              "left": "188",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "541c89b8-fdf2-49ed-95dc-3497288d7084",
-              "id": 442
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Save Response",
-              "description": null,
-              "arguments": {
-                "seclytics_ip_response": "{{vars.result}}"
-              },
-              "status": null,
-              "top": "380",
-              "left": "40",
-              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-              "uuid": "2b958d3f-bc73-4eb6-9ae4-9fd864e4a539",
-              "id": 443
+              "uuid": "0ad34e18-a339-4f94-b69a-ed8abb884519",
+              "id": 31386
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Alerts -> Get IP Context",
-              "targetStep": "/api/3/workflow_steps/541c89b8-fdf2-49ed-95dc-3497288d7084",
-              "sourceStep": "/api/3/workflow_steps/7031a1f1-33f4-4294-adf3-3db43fbcb20d",
+              "name": "Alerts -> Get Host Reputation",
+              "targetStep": "/api/3/workflow_steps/0ad34e18-a339-4f94-b69a-ed8abb884519",
+              "sourceStep": "/api/3/workflow_steps/627c911e-6f5a-4453-8734-a51763f47e54",
               "label": null,
               "isExecuted": false,
-              "uuid": "a61c9b2b-086c-4b23-af51-ee948021e757"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Get IP Context -> Save Response",
-              "targetStep": "/api/3/workflow_steps/2b958d3f-bc73-4eb6-9ae4-9fd864e4a539",
-              "sourceStep": "/api/3/workflow_steps/541c89b8-fdf2-49ed-95dc-3497288d7084",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "e5d01828-0592-46a0-a0ee-9403d216f755"
+              "uuid": "e7fd3349-cb3d-4835-8ad9-8c51cac1060b"
             }
           ],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "a847b508-3a7a-4c89-b9df-efe27005008a",
+          "priority": null,
+          "uuid": "d11b0b2c-4dee-4104-8c05-f62ee39811c2",
           "recordTags": [
-            "SeclyticsAugur"
+            "Seclytics",
+            "seclytics-augur-pxdr"
           ],
-          "id": 136,
+          "id": 11340,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1632447929,
+          "createDate": 1645616293,
           "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1632459924,
+          "modifyDate": 1645616602,
           "owners": [],
           "isPrivate": false
         },
         {
           "@type": "Workflow",
           "triggerLimit": null,
-          "name": "Get File Reputation",
+          "name": "Download Predictions",
           "aliasName": null,
-          "tag": null,
-          "description": "Get reputation of a file hash from Seclytics.",
+          "tag": "#Seclytics Augur pXDR",
+          "description": "Download Seclytics Predicted threat intel data.",
           "isActive": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1632459897,
-          "collection": "/api/3/workflow_collections/d2162198-cc58-4c35-9761-5f5366696bd2",
+          "lastModifyDate": 1645616467,
+          "collection": "/api/3/workflow_collections/cbb6c538-09a2-4cc7-abc0-e0f717b7cf50",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/3af4d337-fcc1-4315-b1d7-3503a4737c50",
+          "triggerStep": "/api/3/workflow_steps/6429f759-6709-4734-af56-be7c3fc3834f",
           "steps": [
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "8821d972-18d7-4198-b610-dddd29a7ba54",
+                "route": "3fd6371c-6430-4b15-ba64-e6bf344ca334",
+                "title": "Seclytics Augur pXDR: Download Predictions",
                 "resources": [
-                  "attachments"
+                  "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "executeButtonText": "Execute",
                 "noRecordExecution": true,
                 "singleRecordExecution": false
               },
               "status": null,
-              "top": "40",
-              "left": "40",
+              "top": "20",
+              "left": "20",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "3af4d337-fcc1-4315-b1d7-3503a4737c50",
-              "id": 444
+              "uuid": "6429f759-6709-4734-af56-be7c3fc3834f",
+              "id": 31389
             },
             {
               "@type": "WorkflowStep",
-              "name": "Get File Reputation",
+              "name": "Download Predictions",
               "description": null,
               "arguments": {
-                "name": "Seclytics Augur",
-                "config": "",
+                "name": "Seclytics Augur pXDR",
+                "config": "''",
                 "params": {
-                  "file_hash": "1a0dd8d4cf955ed456cd7bdb74743f261245ad832a5929fd2857bd2a94c79204"
+                  "file_name": ""
                 },
-                "version": "1.0.1",
-                "connector": "seclytics_fortisoar",
-                "operation": "query_file",
-                "operationTitle": "Get File Reputation",
-                "pickFromTenant": false,
-                "step_variables": []
+                "version": "1.0.0",
+                "connector": "seclytics-augur-pxdr",
+                "operation": "download_predictions",
+                "operationTitle": "Download Predictions",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
               },
               "status": null,
-              "top": "200",
-              "left": "40",
+              "top": "120",
+              "left": "180",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "f896d8c5-364f-4422-819e-33d9d0cae8c9",
-              "id": 445
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Save Response",
-              "description": null,
-              "arguments": {
-                "seclytics_file_response": "{{vars.result}}"
-              },
-              "status": null,
-              "top": "360",
-              "left": "40",
-              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-              "uuid": "da01dc0d-d87f-45cd-a6c6-8fae3a9455f3",
-              "id": 446
+              "uuid": "4cfbb5ef-7c7b-4d19-8dfe-0c9bf2d1b5a7",
+              "id": 31390
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start -> Get File Context",
-              "targetStep": "/api/3/workflow_steps/f896d8c5-364f-4422-819e-33d9d0cae8c9",
-              "sourceStep": "/api/3/workflow_steps/3af4d337-fcc1-4315-b1d7-3503a4737c50",
+              "name": "Alerts -> Download Predictions",
+              "targetStep": "/api/3/workflow_steps/4cfbb5ef-7c7b-4d19-8dfe-0c9bf2d1b5a7",
+              "sourceStep": "/api/3/workflow_steps/6429f759-6709-4734-af56-be7c3fc3834f",
               "label": null,
               "isExecuted": false,
-              "uuid": "57bf2194-757c-48c5-a22e-1615b618324d"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Get File Context -> Save Response",
-              "targetStep": "/api/3/workflow_steps/da01dc0d-d87f-45cd-a6c6-8fae3a9455f3",
-              "sourceStep": "/api/3/workflow_steps/f896d8c5-364f-4422-819e-33d9d0cae8c9",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "d70c1952-94cf-4512-9ea9-599c8be552d1"
+              "uuid": "45af1153-e7f2-49c0-8a77-9faae759cd1b"
             }
           ],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "f2f072a0-7bcd-46fe-9f03-302c79eeba35",
+          "priority": null,
+          "uuid": "d755f86e-5b72-4919-9e30-ce10390c21a1",
           "recordTags": [
-            "SeclyticsAugur"
+            "Seclytics",
+            "seclytics-augur-pxdr"
           ],
-          "id": 137,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1632458511,
+          "id": 11342,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1645616293,
           "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1632459896,
+          "modifyDate": 1645616467,
           "owners": [],
           "isPrivate": false
         }
@@ -599,6 +393,7 @@
     }
   ],
   "exported_tags": [
-    "SeclyticsAugur"
+    "Seclytics",
+    "seclytics-augur-pxdr"
   ]
 }
