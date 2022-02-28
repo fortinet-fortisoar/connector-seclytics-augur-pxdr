@@ -73,9 +73,6 @@ def download_predictions(config, params):
 def check_api_health(config):
     """Check Seclytics api access."""
     auth_endpoint = '/files/77770000022222211333333444445555'
-    try:
-        # Raises an exception on unsuccessful responses
-        Seclytics(config).api_get(auth_endpoint)
-    except:
-        return False
+    # Raises an exception on unsuccessful responses
+    Seclytics(config).api_get(auth_endpoint)
     return True
