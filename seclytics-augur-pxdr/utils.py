@@ -50,12 +50,27 @@ class Seclytics():
 
         try:
             response = self.session.get(url, timeout=self.timeout)
-        except Exception as exc:
-            logger.exception('Error invoking endpoint: {0}'.format(endpoint))
-            raise ConnectorError('Error: {0}'.format(str(exc)))
+            if response.status_code in [404]:
+                return {'Message': 'Not Found'}
 
-        if response.ok:
-            return response.json()
+            if response.status_code not in [200, 201]:
+                error = response.json()
+                error_msg = error.get('error')['message']
+                message = 'HTTP Status Code {0}: {1} Details:{2}'.format(response.status_code, response.reason
+                                                                         , error_msg if error_msg else "None")
+                raise ConnectorError(message)
+            else:
+                json_response = response.json()
+                logger.debug('Response: {0}'.format(json_response))
+                if json_response:
+                    return json_response
 
-        logger.error(response.content)
-        raise ConnectorError(response.content)
+        except requests.exceptions.SSLError:
+            logger.error('An SSL error occurred.')
+            raise ConnectorError('An SSL error occurred.')
+        except requests.exceptions.ConnectionError:
+            logger.error('A connection error occurred.')
+            raise ConnectorError('A connection error occurred.')
+        except Exception as err:
+            logger.error(err)
+            raise ConnectorError(err)
