@@ -10,7 +10,7 @@
     "cs_compatible": true,
     "icon_small": "connector_logo_small.png",
     "icon_large": "connector_logo_large.png",
-    "help_online": "",
+    "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/seclytics-augur-pxdr/236/seclytics-augur-pxdr-v1-0-0",
     "vendor_version": "",
     "ingestion_supported": false,
     "cs_approved": false,
@@ -36,7 +36,7 @@
                 "editable": true,
                 "value": "",
                 "tooltip": "Specify the access token provided by Seclytics to access the APIs.",
-                "description": "Specify the access token provided by Seclytics to access the APIs."
+                "description": "The access token that is provided by Seclytics to access their APIs."
             },
             {
                 "title": "Verify SSL",
@@ -54,7 +54,7 @@
         {
             "operation": "query_domain",
             "title": "Get Domain Reputation",
-            "description": "Retrieves a report for the domains submitted, to determine if they are suspicious.",
+            "description": "Retrieves a report from Seclytics Augur pXDR for the domain that you have submitted to determine if it is suspicious.",
             "category": "investigation",
             "annotation": "domain_reputation",
             "output_schema": {
@@ -80,14 +80,14 @@
                     "type": "text",
                     "name": "domain",
                     "value": "",
-                    "description": "Domain name for which you want to retrieve a report."
+                    "description": "Name of the domain whose report you want to retrieve from Seclytics Augur pXDR."
                 }
             ]
         },
         {
             "operation": "query_host",
             "title": "Get Host Reputation",
-            "description": "Retrieves a report for the host submitted, to determine if they are suspicious.",
+            "description": "Retrieves a report from Seclytics Augur pXDR for the host that you have submitted to determine if it is suspicious.",
             "category": "investigation",
             "annotation": "host_reputation",
             "output_schema": {
@@ -113,14 +113,14 @@
                     "type": "text",
                     "name": "host",
                     "value": "",
-                    "description": "Host for which you want to retrieve a report."
+                    "description": "Name of the host whose report you want to retrieve from Seclytics Augur pXDR."
                 }
             ]
         },
         {
             "operation": "query_file",
             "title": "Get File Reputation",
-            "description": "Retrieves a report for the file that you have submitted using file hash.",
+            "description": "Retrieves a report from Seclytics Augur pXDR for the file hash that you have submitted to determine if it is suspicious.",
             "category": "investigation",
             "annotation": "query_file",
             "output_schema": {
@@ -144,14 +144,14 @@
                     "type": "text",
                     "name": "file_hash",
                     "value": "",
-                    "description": "File Hash of the file for which you want to retrieve a report."
+                    "description": "File hash of the file whose report you want to retrieve from Seclytics Augur pXDR."
                 }
             ]
         },
         {
             "operation": "download_predictions",
             "title": "Download Predictions",
-            "description": "Download Seclytics Predicted threat intel data.",
+            "description": "Downloads all Seclytics predicted threat intel data or Seclytics predicted threat intel data of the specified file.",
             "category": "miscellaneous",
             "annotation": "download_predictions",
             "output_schema": {
@@ -172,7 +172,7 @@
                     "type": "text",
                     "name": "file_name",
                     "value": "",
-                    "description": "File name of the Seclytics prediction data."
+                    "description": "(Optional) Name of the file whose predicted threat intel data you want to download from Seclytics. "
                 }
             ]
         }
