@@ -1,180 +1,853 @@
 {
-    "name": "seclytics-augur-pxdr",
-    "version": "1.0.0",
-    "label": "Seclytics Augur pXDR",
-    "description": "Seclytics Augur pXDR: This FortiSOAR connector interacts with Seclytics Augur pXDR API. It can perform IOC lookup for threat context enrichment for threat investigation. It can also download SecLytics' unique predictive threat intel for automated network security response.",
-    "publisher": "Seclytics",
-    "icon_small_name": "seclytics_logo_s.png",
-    "icon_large_name": "seclytics_logo.png",
-    "category": "Network Protection",
-    "cs_compatible": true,
-    "icon_small": "connector_logo_small.png",
-    "icon_large": "connector_logo_large.png",
-    "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/seclytics-augur-pxdr/236/seclytics-augur-pxdr-v1-0-0",
-    "vendor_version": "",
-    "ingestion_supported": false,
-    "cs_approved": false,
-    "configuration": {
-        "fields": [
-            {
-                "title": "Server URL",
-                "type": "text",
-                "name": "api_hostname",
-                "required": true,
-                "visible": true,
-                "editable": true,
-                "value": "api.seclytics.com",
-                "placeholder": "e.g. api.seclytics.com",
-                "description": "URL of the Seclytics server to which you will connect and perform the automated operations."
-            },
-            {
-                "title": "Access Token",
-                "type": "password",
-                "name": "access_token",
-                "required": false,
-                "visible": true,
-                "editable": true,
-                "value": "",
-                "tooltip": "Specify the access token provided by Seclytics to access the APIs.",
-                "description": "The access token that is provided by Seclytics to access their APIs."
-            },
-            {
-                "title": "Verify SSL",
-                "type": "checkbox",
-                "name": "verify_ssl",
-                "required": true,
-                "visible": true,
-                "editable": true,
-                "value": true,
-                "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True. "
-            }
-        ]
-    },
-    "operations": [
-        {
-            "operation": "query_domain",
-            "title": "Get Domain Reputation",
-            "description": "Retrieves a report from Seclytics Augur pXDR for the domain that you have submitted to determine if it is suspicious.",
-            "category": "investigation",
-            "annotation": "domain_reputation",
-            "output_schema": {
-                "score": "",
-                "categories": "",
-                "domain_siblings": [],
-                "aggregate": "",
-                "detected_downloaded_samples": "",
-                "undetected_downloaded_samples": "",
-                "detected_urls": "",
-                "subdomains": "",
-                "whois": "",
-                "whois_timestamp": "",
-                "msg": ""
-            },
-            "enabled": true,
-            "parameters": [
-                {
-                    "title": "Domain",
-                    "required": true,
-                    "editable": true,
-                    "visible": true,
-                    "type": "text",
-                    "name": "domain",
-                    "value": "",
-                    "description": "Name of the domain whose report you want to retrieve from Seclytics Augur pXDR."
-                }
-            ]
-        },
-        {
-            "operation": "query_host",
-            "title": "Get Host Reputation",
-            "description": "Retrieves a report from Seclytics Augur pXDR for the host that you have submitted to determine if it is suspicious.",
-            "category": "investigation",
-            "annotation": "host_reputation",
-            "output_schema": {
-                "score": "",
-                "permalink": "",
-                "aggregate": "",
-                "positives": "",
-                "total": "",
-                "resource": "",
-                "scan_date": "",
-                "scan_id": "",
-                "url": "",
-                "msg": "",
-                "scans": {}
-            },
-            "enabled": true,
-            "parameters": [
-                {
-                    "title": "Host",
-                    "required": true,
-                    "editable": true,
-                    "visible": true,
-                    "type": "text",
-                    "name": "host",
-                    "value": "",
-                    "description": "Name of the host whose report you want to retrieve from Seclytics Augur pXDR."
-                }
-            ]
-        },
-        {
-            "operation": "query_file",
-            "title": "Get File Reputation",
-            "description": "Retrieves a report from Seclytics Augur pXDR for the file hash that you have submitted to determine if it is suspicious.",
-            "category": "investigation",
-            "annotation": "query_file",
-            "output_schema": {
-                "score": "",
-                "permalink": "",
-                "aggregate": "",
-                "positives": "",
-                "resource": "",
-                "scan_date": "",
-                "scan_id": "",
-                "msg": "",
-                "scans": {}
-            },
-            "enabled": true,
-            "parameters": [
-                {
-                    "title": "File Hash",
-                    "required": true,
-                    "editable": true,
-                    "visible": true,
-                    "type": "text",
-                    "name": "file_hash",
-                    "value": "",
-                    "description": "File hash of the file whose report you want to retrieve from Seclytics Augur pXDR."
-                }
-            ]
-        },
-        {
-            "operation": "download_predictions",
-            "title": "Download Predictions",
-            "description": "Downloads all Seclytics predicted threat intel data or Seclytics predicted threat intel data of the specified file.",
-            "category": "miscellaneous",
-            "annotation": "download_predictions",
-            "output_schema": {
-                "predicted_netblock": "",
-                "cluster": "",
-                "predicted_category": "",
-                "predicted_at": "",
-                "prediction_profile": "",
-                "severity": ""
-            },
-            "enabled": true,
-            "parameters": [
-                {
-                    "title": "File Name",
-                    "required": false,
-                    "editable": true,
-                    "visible": true,
-                    "type": "text",
-                    "name": "file_name",
-                    "value": "",
-                    "description": "(Optional) Name of the file whose predicted threat intel data you want to download from Seclytics. "
-                }
-            ]
-        }
+  "name": "seclytics-augur-pxdr",
+  "version": "1.1.0",
+  "label": "Seclytics Augur pXDR",
+  "description": "Seclytics Augur pXDR: This FortiSOAR connector interacts with Seclytics Augur pXDR API. It can perform IOC lookup for threat context enrichment for threat investigation. It can also download SecLytics' unique predictive threat intel for automated network security response.",
+  "publisher": "Seclytics",
+  "icon_small_name": "seclytics_logo_s.png",
+  "icon_large_name": "seclytics_logo.png",
+  "category": "Network Protection",
+  "cs_compatible": true,
+  "icon_small": "connector_logo_small.png",
+  "icon_large": "connector_logo_large.png",
+  "help_online": "",
+  "vendor_version": "",
+  "ingestion_supported": false,
+  "cs_approved": true,
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "type": "text",
+        "name": "api_hostname",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "value": "api.seclytics.com",
+        "placeholder": "e.g. api.seclytics.com",
+        "description": "URL of the Seclytics server to which you will connect and perform the automated operations."
+      },
+      {
+        "title": "Access Token",
+        "type": "password",
+        "name": "access_token",
+        "required": false,
+        "visible": true,
+        "editable": true,
+        "value": "",
+        "tooltip": "Specify the access token provided by Seclytics to access the APIs.",
+        "description": "The access token that is provided by Seclytics to access their APIs."
+      },
+      {
+        "title": "Verify SSL",
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True. "
+      }
     ]
+  },
+  "operations": [
+    {
+      "operation": "query_domain",
+      "title": "Get Domain Reputation",
+      "description": "Retrieves a report from Seclytics Augur pXDR for the domain that you have submitted to determine if it is suspicious.",
+      "category": "investigation",
+      "annotation": "domain_reputation",
+      "output_schema": {
+        "id": "",
+        "dga": {
+          "score": "",
+          "is_dga": ""
+        },
+        "tld": "",
+        "type": "",
+        "domain": "",
+        "suffix": "",
+        "context": {
+          "ips": {
+            "cleanmx_xmlviruses": []
+          },
+          "sha1": {
+            "urlhaus": [],
+            "urlquery": [],
+            "malshare_com": [],
+            "alien_vault_otx": [],
+            "hybrid_analysis": [],
+            "cleanmx_xmlviruses": []
+          },
+          "urls": {
+            "urlhaus": [],
+            "urlquery": [],
+            "malshare_com": [],
+            "alien_vault_otx": [],
+            "hybrid_analysis": [],
+            "cleanmx_xmlviruses": []
+          },
+          "paths": {
+            "urlhaus": [],
+            "urlquery": [],
+            "malshare_com": [],
+            "alien_vault_otx": [],
+            "hybrid_analysis": [],
+            "cleanmx_xmlviruses": []
+          },
+          "reasons": {
+            "urlhaus": [],
+            "alien_vault_otx": [],
+            "cleanmx_xmlviruses": []
+          },
+          "categories": {
+            "urlhaus": [],
+            "urlquery": [],
+            "malshare_com": [],
+            "alien_vault_otx": [],
+            "hybrid_analysis": [],
+            "cleanmx_xmlviruses": []
+          },
+          "references": {
+            "alien_vault_otx": []
+          },
+          "identifiers": {
+            "urlhaus": [],
+            "alien_vault_otx": [],
+            "cleanmx_xmlviruses": []
+          },
+          "source_urls": {
+            "urlhaus": [],
+            "urlquery": [],
+            "alien_vault_otx": [],
+            "hybrid_analysis": []
+          },
+          "malware_families": {
+            "urlhaus": [],
+            "alien_vault_otx": [],
+            "cleanmx_xmlviruses": []
+          }
+        },
+        "doc_ids": [],
+        "history": {
+          "by_feed": {
+            "urlhaus": [],
+            "urlquery": [],
+            "malshare_com": [],
+            "alien_vault_otx": [],
+            "hybrid_analysis": [],
+            "cleanmx_xmlviruses": []
+          },
+          "by_category": {
+            "malicious": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ]
+          },
+          "last_seen_at": "",
+          "by_identifier": {
+            "emotet": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "ramnit": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "vertek": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ]
+          },
+          "first_seen_at": "",
+          "global_history": [
+            {
+              "end_at": "",
+              "duration": "",
+              "start_at": ""
+            }
+          ]
+        },
+        "ranking": {
+          "domcop": {
+            "max": "",
+            "min": "",
+            "last": "",
+            "current": ""
+          },
+          "alexa1m": {
+            "max": "",
+            "min": "",
+            "last": "",
+            "current": ""
+          },
+          "majestic1m": {
+            "max": "",
+            "min": "",
+            "last": ""
+          },
+          "umbrella1m": {
+            "max": "",
+            "min": "",
+            "last": "",
+            "current": ""
+          }
+        },
+        "hostname": "",
+        "subdomain": "",
+        "connections": [
+          {
+            "id": "",
+            "type": ""
+          }
+        ],
+        "passive_dns": [
+          {
+            "feed": "",
+            "domain": "",
+            "hostname": "",
+            "answer_host": "",
+            "answer_text": "",
+            "answer_type": "",
+            "dynamic_dns": "",
+            "last_seen_at": "",
+            "first_seen_at": ""
+          }
+        ],
+        "ip_connections": [
+          {
+            "id": "",
+            "ip": {
+              "type": "",
+              "number": "",
+              "address": ""
+            },
+            "asn": {
+              "number": "",
+              "description": ""
+            },
+            "rir": {
+              "code": "",
+              "name": ""
+            },
+            "cidr": {
+              "size": "",
+              "block": "",
+              "status": ""
+            },
+            "type": "",
+            "context": {
+              "reasons": {
+                "badips": [],
+                "blocklist": []
+              },
+              "hostnames": {
+                "phishtank": []
+              },
+              "categories": {
+                "badips": [],
+                "blocklist": [],
+                "phishtank": [],
+                "uceprotect_level2": [],
+                "dshield_daily_sources": [],
+                "uceprotect_backscatter": []
+              }
+            },
+            "country": {
+              "code": "",
+              "name": ""
+            },
+            "history": {
+              "by_feed": {
+                "badips": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ],
+                "blocklist": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ],
+                "phishtank": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ],
+                "uceprotect_level2": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ],
+                "dshield_daily_sources": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ],
+                "uceprotect_backscatter": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ]
+              },
+              "by_category": {
+                "spam": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ],
+                "scanner": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ],
+                "phishing": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ],
+                "backscatter": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ]
+              },
+              "last_seen_at": "",
+              "first_seen_at": "",
+              "global_history": [
+                {
+                  "end_at": "",
+                  "duration": "",
+                  "start_at": ""
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Domain",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "domain",
+          "value": "",
+          "description": "Name of the domain whose report you want to retrieve from Seclytics Augur pXDR."
+        }
+      ]
+    },
+    {
+      "operation": "query_host",
+      "title": "Get Host Reputation",
+      "description": "Retrieves a report from Seclytics Augur pXDR for the host that you have submitted to determine if it is suspicious.",
+      "category": "investigation",
+      "annotation": "host_reputation",
+      "output_schema": {
+        "id": "",
+        "dga": {
+          "score": "",
+          "is_dga": ""
+        },
+        "tld": "",
+        "type": "",
+        "domain": "",
+        "emails": [
+          {
+            "ips": [],
+            "froms": [],
+            "parts": [],
+            "subjects": [],
+            "hostnames": [],
+            "from_hosts": [],
+            "date_periods": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "received_ips": [],
+            "return_paths": [],
+            "return_path_hosts": []
+          }
+        ],
+        "suffix": "",
+        "context": {
+          "sha1": {
+            "circl_lu": [],
+            "facebook_tx": [],
+            "dynamoo_blog": [],
+            "triage_sandbox": [],
+            "nothink_mal_dns": [],
+            "malwareconfig_com": []
+          },
+          "urls": {
+            "circl_lu": [],
+            "facebook_tx": [],
+            "dynamoo_blog": [],
+            "triage_sandbox": [],
+            "nothink_mal_dns": [],
+            "malwareconfig_com": []
+          },
+          "paths": {
+            "circl_lu": [],
+            "facebook_tx": [],
+            "dynamoo_blog": [],
+            "triage_sandbox": [],
+            "nothink_mal_dns": [],
+            "malwareconfig_com": []
+          },
+          "reasons": {
+            "circl_lu": [],
+            "triage_sandbox": []
+          },
+          "categories": {
+            "circl_lu": [],
+            "facebook_tx": [],
+            "dynamoo_blog": [],
+            "triage_sandbox": [],
+            "nothink_mal_dns": [],
+            "malwareconfig_com": []
+          },
+          "identifiers": {
+            "circl_lu": [],
+            "malwareconfig_com": []
+          },
+          "source_urls": {
+            "triage_sandbox": []
+          },
+          "malware_families": {
+            "circl_lu": [],
+            "malwareconfig_com": []
+          }
+        },
+        "doc_ids": [],
+        "history": {
+          "by_feed": {
+            "circl_lu": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "facebook_tx": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "dynamoo_blog": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "triage_sandbox": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "nothink_mal_dns": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "malwareconfig_com": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ]
+          },
+          "by_category": {
+            "malicious": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ]
+          },
+          "last_seen_at": "",
+          "by_identifier": {
+            "dyre": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "pony": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "mikey": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "fareit": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "quasar": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "tofsee": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "upatre": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ],
+            "neutrino_pos": [
+              {
+                "end_at": "",
+                "duration": "",
+                "start_at": ""
+              }
+            ]
+          },
+          "first_seen_at": "",
+          "global_history": [
+            {
+              "end_at": "",
+              "duration": "",
+              "start_at": ""
+            }
+          ]
+        },
+        "ranking": {
+          "domcop": {
+            "max": "",
+            "min": "",
+            "last": "",
+            "current": ""
+          },
+          "tranco": {
+            "max": "",
+            "min": "",
+            "last": "",
+            "current": ""
+          },
+          "alexa1m": {
+            "max": "",
+            "min": "",
+            "last": "",
+            "current": ""
+          },
+          "majestic1m": {
+            "max": "",
+            "min": "",
+            "last": "",
+            "current": ""
+          },
+          "umbrella1m": {
+            "max": "",
+            "min": "",
+            "last": "",
+            "current": ""
+          }
+        },
+        "hostname": "",
+        "subdomain": "",
+        "whitelist": "",
+        "connections": [
+          {
+            "id": "",
+            "type": "",
+            "whitelist": ""
+          }
+        ],
+        "passive_dns": [
+          {
+            "feed": "",
+            "domain": "",
+            "hostname": "",
+            "answer_host": "",
+            "answer_text": "",
+            "answer_type": "",
+            "dynamic_dns": "",
+            "last_seen_at": "",
+            "first_seen_at": ""
+          }
+        ],
+        "ip_connections": [
+          {
+            "id": "",
+            "ip": {
+              "type": "",
+              "number": "",
+              "address": ""
+            },
+            "asn": {
+              "number": "",
+              "description": ""
+            },
+            "rir": {
+              "code": "",
+              "name": ""
+            },
+            "cidr": {
+              "size": "",
+              "block": "",
+              "status": ""
+            },
+            "type": "",
+            "context": {
+              "categories": {
+                "dshield_daily_sources": []
+              }
+            },
+            "country": {
+              "code": "",
+              "name": ""
+            },
+            "history": {
+              "by_feed": {
+                "dshield_daily_sources": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ]
+              },
+              "by_category": {
+                "scanner": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ]
+              },
+              "last_seen_at": "",
+              "first_seen_at": "",
+              "global_history": [
+                {
+                  "end_at": "",
+                  "duration": "",
+                  "start_at": ""
+                }
+              ]
+            },
+            "whitelist": ""
+          }
+        ],
+        "file_connections": [
+          {
+            "id": "",
+            "hash": "",
+            "type": "",
+            "context": {
+              "ips": {
+                "gtmpdns": []
+              },
+              "md5": {
+                "gtmpdns": [],
+                "seclytics_premium_malicious_binaries": []
+              },
+              "sha1": {
+                "seclytics_premium_malicious_binaries": []
+              },
+              "sha256": {
+                "seclytics_premium_malicious_binaries": []
+              },
+              "ssdeep": {
+                "seclytics_premium_malicious_binaries": []
+              },
+              "hostnames": {
+                "gtmpdns": []
+              },
+              "categories": {
+                "gtmpdns": [],
+                "seclytics_premium_malicious_binaries": []
+              },
+              "file_types": {
+                "seclytics_premium_malicious_binaries": []
+              },
+              "mime_types": {
+                "seclytics_premium_malicious_binaries": []
+              }
+            },
+            "history": {
+              "by_feed": {
+                "gtmpdns": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ],
+                "seclytics_premium_malicious_binaries": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ]
+              },
+              "by_category": {
+                "malware": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ],
+                "malicious": [
+                  {
+                    "end_at": "",
+                    "duration": "",
+                    "start_at": ""
+                  }
+                ]
+              },
+              "last_seen_at": "",
+              "first_seen_at": "",
+              "global_history": [
+                {
+                  "end_at": "",
+                  "duration": "",
+                  "start_at": ""
+                }
+              ]
+            },
+            "hash_type": ""
+          }
+        ],
+        "accessed_by_files": []
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Host",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "host",
+          "value": "",
+          "description": "Name of the host whose report you want to retrieve from Seclytics Augur pXDR."
+        }
+      ]
+    },
+    {
+      "operation": "query_file",
+      "title": "Get File Reputation",
+      "description": "Retrieves a report from Seclytics Augur pXDR for the file hash that you have submitted to determine if it is suspicious.",
+      "category": "investigation",
+      "annotation": "query_file",
+      "output_schema": {
+        "id": "",
+        "hash": "",
+        "type": "",
+        "hash_type": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "File Hash",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "file_hash",
+          "value": "",
+          "description": "File hash of the file whose report you want to retrieve from Seclytics Augur pXDR."
+        }
+      ]
+    },
+    {
+      "operation": "download_predictions",
+      "title": "Download Predictions",
+      "description": "Downloads all Seclytics predicted threat intel data or Seclytics predicted threat intel data of the specified file.",
+      "category": "miscellaneous",
+      "annotation": "download_predictions",
+      "output_schema": {
+        "predicted_netblock": "",
+        "cluster": "",
+        "predicted_category": "",
+        "predicted_at": "",
+        "prediction_profile": "",
+        "severity": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "File Name",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "file_name",
+          "value": "",
+          "description": "(Optional) Name of the file whose predicted threat intel data you want to download from Seclytics. "
+        }
+      ]
+    }
+  ]
 }
