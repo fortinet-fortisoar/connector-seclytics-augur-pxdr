@@ -845,7 +845,8 @@
           "type": "text",
           "name": "file_name",
           "value": "",
-          "description": "(Optional) Name of the file whose predicted threat intel data you want to download from Seclytics. "
+          "tooltip": "Name of the file whose predicted threat intel data you want to download from Seclytics.",
+          "description": "(Optional) Name of the file whose predicted threat intel data you want to download from Seclytics."
         }
       ]
     }

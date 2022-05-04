@@ -2,15 +2,17 @@
   "type": "workflow_collections",
   "data": [
     {
-      "@context": "/api/3/contexts/WorkflowCollection",
       "@type": "WorkflowCollection",
       "name": "Sample - Seclytics Augur pXDR - 1.1.0",
       "description": "Sample playbooks for \"Seclytics Augur pXDR\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
       "visible": true,
-      "image": "/api/3/images/1f492f37-1e69-461d-add4-1e6c1667eea7",
-      "id": 1150,
-      "createDate": 1645616293,
-      "modifyDate": 1645616293,
+      "image": "/api/3/images/fce8bad8-125e-4140-b82e-0b0cbbd52279",
+      "uuid": "e3316da9-5ca0-45e3-ba81-7594a1753236",
+      "id": 1407,
+      "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+      "createDate": 1651666885,
+      "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+      "modifyDate": 1651666885,
       "recordTags": [],
       "workflows": [
         {
@@ -21,12 +23,13 @@
           "tag": "#Seclytics Augur pXDR",
           "description": "Retrieves a report for the file that you have submitted using file hash.",
           "isActive": false,
+          "debug": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1645616586,
-          "collection": "/api/3/workflow_collections/cbb6c538-09a2-4cc7-abc0-e0f717b7cf50",
+          "lastModifyDate": 1651667093,
+          "collection": "/api/3/workflow_collections/e3316da9-5ca0-45e3-ba81-7594a1753236",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/4c19514b-6435-4efb-ba2d-ccfd9f21753c",
           "steps": [
@@ -54,7 +57,7 @@
               "left": "20",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "uuid": "4c19514b-6435-4efb-ba2d-ccfd9f21753c",
-              "id": 31387
+              "id": 63122
             },
             {
               "@type": "WorkflowStep",
@@ -62,9 +65,9 @@
               "description": null,
               "arguments": {
                 "name": "Seclytics Augur pXDR",
-                "config": "''",
+                "config": "754e37ce-9028-4aeb-b2f6-4e3c0493e455",
                 "params": {
-                  "file_hash": ""
+                  "file_hash": "77770000022222211333333444445555"
                 },
                 "version": "1.1.0",
                 "connector": "seclytics-augur-pxdr",
@@ -79,7 +82,7 @@
               "left": "188",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "uuid": "d7b892e3-7747-46a8-afa9-4884182cb921",
-              "id": 31388
+              "id": 63123
             }
           ],
           "routes": [
@@ -99,11 +102,11 @@
             "Seclytics",
             "seclytics-augur-pxdr"
           ],
-          "id": 11341,
+          "id": 19436,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1645616293,
+          "createDate": 1651666885,
           "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1645616585,
+          "modifyDate": 1651667093,
           "owners": [],
           "isPrivate": false
         },
@@ -115,12 +118,13 @@
           "tag": "#Seclytics Augur pXDR",
           "description": "Retrieves a report for the domains submitted, to determine if they are suspicious.",
           "isActive": false,
+          "debug": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
           "lastModifyDate": 1645616570,
-          "collection": "/api/3/workflow_collections/cbb6c538-09a2-4cc7-abc0-e0f717b7cf50",
+          "collection": "/api/3/workflow_collections/e3316da9-5ca0-45e3-ba81-7594a1753236",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/e63a573f-393d-43ff-9831-1ac317a5c534",
           "steps": [
@@ -148,7 +152,7 @@
               "left": "20",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "uuid": "e63a573f-393d-43ff-9831-1ac317a5c534",
-              "id": 31383
+              "id": 63124
             },
             {
               "@type": "WorkflowStep",
@@ -173,7 +177,7 @@
               "left": "180",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "uuid": "fb5befd2-70ef-4ad8-9bf5-d1a0cbe042a9",
-              "id": 31384
+              "id": 63125
             }
           ],
           "routes": [
@@ -193,11 +197,11 @@
             "Seclytics",
             "seclytics-augur-pxdr"
           ],
-          "id": 11339,
+          "id": 19437,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1645616293,
-          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1645616570,
+          "createDate": 1651666885,
+          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "modifyDate": 1651666885,
           "owners": [],
           "isPrivate": false
         },
@@ -209,15 +213,41 @@
           "tag": "#Seclytics Augur pXDR",
           "description": "Retrieves a report for the host submitted, to determine if they are suspicious.",
           "isActive": false,
+          "debug": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1645616602,
-          "collection": "/api/3/workflow_collections/cbb6c538-09a2-4cc7-abc0-e0f717b7cf50",
+          "lastModifyDate": 1651667168,
+          "collection": "/api/3/workflow_collections/e3316da9-5ca0-45e3-ba81-7594a1753236",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/627c911e-6f5a-4453-8734-a51763f47e54",
           "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Host Reputation",
+              "description": null,
+              "arguments": {
+                "name": "Seclytics Augur pXDR",
+                "config": "754e37ce-9028-4aeb-b2f6-4e3c0493e455",
+                "params": {
+                  "host": "google.com"
+                },
+                "version": "1.1.0",
+                "connector": "seclytics-augur-pxdr",
+                "operation": "query_host",
+                "operationTitle": "Get Host Reputation",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "0ad34e18-a339-4f94-b69a-ed8abb884519",
+              "id": 63127
+            },
             {
               "@type": "WorkflowStep",
               "name": "Start",
@@ -242,32 +272,7 @@
               "left": "20",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "uuid": "627c911e-6f5a-4453-8734-a51763f47e54",
-              "id": 31385
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Host Reputation",
-              "description": null,
-              "arguments": {
-                "name": "Seclytics Augur pXDR",
-                "config": "''",
-                "params": {
-                  "host": ""
-                },
-                "version": "1.1.0",
-                "connector": "seclytics-augur-pxdr",
-                "operation": "query_host",
-                "operationTitle": "Get Host Reputation",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "0ad34e18-a339-4f94-b69a-ed8abb884519",
-              "id": 31386
+              "id": 63126
             }
           ],
           "routes": [
@@ -287,11 +292,11 @@
             "Seclytics",
             "seclytics-augur-pxdr"
           ],
-          "id": 11340,
+          "id": 19438,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1645616293,
+          "createDate": 1651666885,
           "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1645616602,
+          "modifyDate": 1651667168,
           "owners": [],
           "isPrivate": false
         },
@@ -303,15 +308,41 @@
           "tag": "#Seclytics Augur pXDR",
           "description": "Download Seclytics Predicted threat intel data.",
           "isActive": false,
+          "debug": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
           "lastModifyDate": 1645616467,
-          "collection": "/api/3/workflow_collections/cbb6c538-09a2-4cc7-abc0-e0f717b7cf50",
+          "collection": "/api/3/workflow_collections/e3316da9-5ca0-45e3-ba81-7594a1753236",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/6429f759-6709-4734-af56-be7c3fc3834f",
           "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Download Predictions",
+              "description": null,
+              "arguments": {
+                "name": "Seclytics Augur pXDR",
+                "config": "''",
+                "params": {
+                  "file_name": ""
+                },
+                "version": "1.1.0",
+                "connector": "seclytics-augur-pxdr",
+                "operation": "download_predictions",
+                "operationTitle": "Download Predictions",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "180",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "4cfbb5ef-7c7b-4d19-8dfe-0c9bf2d1b5a7",
+              "id": 63129
+            },
             {
               "@type": "WorkflowStep",
               "name": "Start",
@@ -336,32 +367,7 @@
               "left": "20",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "uuid": "6429f759-6709-4734-af56-be7c3fc3834f",
-              "id": 31389
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Download Predictions",
-              "description": null,
-              "arguments": {
-                "name": "Seclytics Augur pXDR",
-                "config": "''",
-                "params": {
-                  "file_name": ""
-                },
-                "version": "1.1.0",
-                "connector": "seclytics-augur-pxdr",
-                "operation": "download_predictions",
-                "operationTitle": "Download Predictions",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
-              },
-              "status": null,
-              "top": "120",
-              "left": "180",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "4cfbb5ef-7c7b-4d19-8dfe-0c9bf2d1b5a7",
-              "id": 31390
+              "id": 63128
             }
           ],
           "routes": [
@@ -381,11 +387,11 @@
             "Seclytics",
             "seclytics-augur-pxdr"
           ],
-          "id": 11342,
+          "id": 19439,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1645616293,
-          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1645616467,
+          "createDate": 1651666885,
+          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "modifyDate": 1651666885,
           "owners": [],
           "isPrivate": false
         }
