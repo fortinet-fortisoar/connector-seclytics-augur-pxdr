@@ -67,7 +67,7 @@
                 "name": "Seclytics Augur pXDR",
                 "config": "754e37ce-9028-4aeb-b2f6-4e3c0493e455",
                 "params": {
-                  "file_hash": "77770000022222211333333444445555"
+                  "file_hash": "3CBCFDDEC145E3382D592266BE193E5BE53443138EE6AB6CA09FF20DF609E268"
                 },
                 "version": "1.1.0",
                 "connector": "seclytics-augur-pxdr",
